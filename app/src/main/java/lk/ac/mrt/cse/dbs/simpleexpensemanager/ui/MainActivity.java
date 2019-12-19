@@ -27,9 +27,15 @@ import android.support.v7.widget.Toolbar;
 
 import lk.ac.mrt.cse.dbs.simpleexpensemanager.R;
 import lk.ac.mrt.cse.dbs.simpleexpensemanager.control.ExpenseManager;
-import lk.ac.mrt.cse.dbs.simpleexpensemanager.control.InMemoryDemoExpenseManager;
+import lk.ac.mrt.cse.dbs.simpleexpensemanager.control.PersistentDemoExpenseManager;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static MainActivity instance;
+    public MainActivity(){
+
+        instance = this;
+    }
     private ExpenseManager expenseManager;
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -65,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(mViewPager);
 
         /***  Begin generating dummy data for In-Memory implementation  ***/
-        expenseManager = new InMemoryDemoExpenseManager();
+        expenseManager = new PersistentDemoExpenseManager();
         /*** END ***/
     }
 
@@ -95,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+
         @Override
         public int getCount() {
             // Show 3 total pages.
@@ -115,4 +122,5 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
 }
